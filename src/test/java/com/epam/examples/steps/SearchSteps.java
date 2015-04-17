@@ -46,4 +46,21 @@ public class SearchSteps {
     public void messageIsShown() {
         assertTrue(searchPage.verifyEmptySearchMessage());
     }
+    
+    @Then("verify the first link is exists")
+    public void verifyFirstResult(){
+    	assertTrue(searchPage.verifyFirstResult());
+    }
+    
+    @Then("click on the first link")
+    public void clickFirstResultButton()
+    {
+    	searchPage.clickFirstResultButton();
+    }
+    
+    @Then("verify the url of the page")
+    public void verifyURL()
+    {
+    	assertTrue(searchPage.verifyURL());
+    }
 }

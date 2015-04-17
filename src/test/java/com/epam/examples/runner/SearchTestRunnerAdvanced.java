@@ -4,8 +4,10 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromPath;
 import static org.jbehave.core.reporters.Format.CONSOLE;
 import static org.jbehave.web.selenium.WebDriverHtmlOutput.WEB_DRIVER_HTML;
+
 import com.epam.examples.steps.SearchSteps;
 import com.epam.tests.pages.PageFactory;
+
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.StoryControls;
 import org.jbehave.core.embedder.executors.SameThreadExecutors;
@@ -67,6 +69,10 @@ public class SearchTestRunnerAdvanced extends JUnitStories {
         configuredEmbedder().embedderControls().useStoryTimeoutInSecs(
             1000);
     }
+    
+    static {
+	     System.setProperty("webdriver.chrome.driver", "D:\\Downloads\\chromedriver_win32\\chromedriver.exe");
+	}
 
     @Override
     public Configuration configuration() {

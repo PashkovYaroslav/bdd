@@ -33,10 +33,43 @@ public class SearchPage extends WebDriverPage {
         findElement(By.id("search-submit")).click();
     }
 
+    public boolean verifyFirstResult() {
+        try {
+            findElement(By.cssSelector("li.first")).isDisplayed();
+            return true;
+        } catch (NoSuchElementException ex) {
+            ex.getMessage();
+            return false;
+        }
+    }
+    
+    public void clickFirstResultButton() {
+        findElement(By.cssSelector("li.first div div div h3 a")).click();
+        for (String winHandle : getWindowHandles()) {
+            switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+        }
+        
+    }
+    
+    public boolean verifyURL() {
+        try {
+        	System.out.println(getCurrentUrl());
+        	
+            if(getCurrentUrl().equals("http://www.weather.com/"))
+            {
+            	return true;
+            }
+            return false;
+        } catch (NoSuchElementException ex) {
+            ex.getMessage();
+            return false;
+        }
+    } 
+    
     public boolean verifySearchResults() {
         try {
             findElement(By
-                .xpath("//h2[contains(., 'Search results')]")).isDisplayed();
+                .xpath(".//*[@id='left']/ol/li/div/div/span")).isDisplayed();
             return true;
         } catch (NoSuchElementException ex) {
             ex.getMessage();
@@ -47,7 +80,7 @@ public class SearchPage extends WebDriverPage {
     public boolean verifyEmptySearchMessage() {
         try {
             findElement(By
-                .xpath("//h2[contains(., 'We did not find results for:')]")).isDisplayed();
+                .xpath(".//div[@class='compText mb-15 fz-m fc-4th']/p")).isDisplayed();
             return true;
         } catch (NoSuchElementException ex) {
             ex.getMessage();
